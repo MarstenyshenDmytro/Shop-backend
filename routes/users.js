@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-  response.json({
+  res.json({
     name: "Ivan",
     password: "123",
   });
