@@ -8,7 +8,14 @@ const client = new Client({
   ssl: process.env.DATABASE_URL ? true : false,
 });
 console.log(process.env.DATABASE_URL);
-client.connect();
+
+client.connect((err) => {
+  if (err) {
+    console.error("connection error", err.stack);
+  } else {
+    console.log("connected");
+  }
+});
 
 client.query("SELECT 1", (err, res) => {
   if (err) console.log(err);
