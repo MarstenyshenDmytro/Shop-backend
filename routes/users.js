@@ -10,16 +10,13 @@ const client = new Client({
 console.log(process.env.DATABASE_URL);
 client.connect();
 
-client.query(
-  "SELECT table_schema, table_name FROM information_schema.tables;",
-  (err, res) => {
-    if (err) console.log(err);
-    for (let row of res.rows) {
-      console.log(JSON.stringify(row));
-    }
-    client.end();
-  }
-);
+client.query("SELECT 1", (err, res) => {
+  if (err) console.log(err);
+
+  console.log(res);
+
+  client.end();
+});
 /* GET users listing. */
 router.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
