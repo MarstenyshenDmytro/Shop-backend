@@ -33,7 +33,7 @@ router.get("/", function (req, res, next) {
     console.log(dbRes);
 
     res.json({
-      data: dbRes,
+      data: dbRes.rows,
     });
 
     client.end();
