@@ -1,13 +1,6 @@
 var express = require("express");
 var router = express.Router();
-
-const { Client } = require("pg");
-
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: false,
-});
-console.log(process.env.DATABASE_URL);
+const client = require("../db/db");
 
 /* GET users listing. */
 router.use(function (req, res, next) {
