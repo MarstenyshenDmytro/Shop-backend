@@ -32,11 +32,11 @@ router.get("/", function (req, res, next) {
 
     console.log(dbRes);
 
+    client.end();
+
     res.json({
       data: dbRes.rows,
     });
-
-    client.end();
   });
 });
 
