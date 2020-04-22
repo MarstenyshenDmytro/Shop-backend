@@ -12,16 +12,17 @@ router.use(function (req, res, next) {
   next();
 });
 router.get("/", function (req, res, next) {
+  client.connect();
   client.query("SELECT * FROM products WHERE id=1", (err, dbRes) => {
     if (err) console.log(err);
 
     console.log(dbRes);
 
-    client.end();
-
     res.json({
       data: dbRes.rows,
     });
+
+    client.end();
   });
 });
 
