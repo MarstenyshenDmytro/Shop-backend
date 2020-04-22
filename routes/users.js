@@ -12,14 +12,6 @@ router.use(function (req, res, next) {
   next();
 });
 router.get("/", function (req, res, next) {
-  client.connect((err) => {
-    if (err) {
-      console.error("connection error", err.stack);
-    } else {
-      console.log("connected");
-    }
-  });
-
   client.query("SELECT * FROM products WHERE id=1", (err, dbRes) => {
     if (err) console.log(err);
 
