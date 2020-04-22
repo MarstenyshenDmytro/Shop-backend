@@ -1,6 +1,5 @@
 var express = require("express");
 var router = express.Router();
-const client = require("../db/db");
 
 /* GET users listing. */
 router.use(function (req, res, next) {
@@ -11,13 +10,21 @@ router.use(function (req, res, next) {
   );
   next();
 });
-router.get("/", async function (req, res, next) {
-  await client.connect();
-  const dbRes = await client.query("SELECT * FROM products WHERE id=1");
-  res.json({
-    data: dbRes.rows,
+router.get("/", function (req, res, next) {
+  const client = require("../db/db");
+
+  client.connect();
+  client.query("SELECT * FROM products WHERE id=1", (err, dbRes) => {
+    if (err) console.log(err);
+
+    console.log(dbRes);
+
+    res.json({
+      data: dbRes.rows,
+    });
+
+    client.end();
   });
-  await client.end();
 });
 
 module.exports = router;
