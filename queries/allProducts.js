@@ -15,7 +15,9 @@ const getAllProducts = () => {
     console.log("ALL PRODUCTS FILE", res.rows);
     data = res.rows;
     client.end();
+    console.log(1);
   });
+  console.log(2);
   return data;
 };
 
