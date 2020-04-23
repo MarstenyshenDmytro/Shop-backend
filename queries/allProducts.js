@@ -12,7 +12,7 @@ const getAllProducts = () => {
     // res.json({
     //   data: dbRes.rows,
     // });
-
+    console.log(res.rows);
     client.end();
 
     return res.rows;
