@@ -12,8 +12,8 @@ router.use(function (req, res, next) {
   next();
 });
 router.use(function (req, res, next) {
-  if (req.header.authorization) {
-    console.log(req.header.authorization);
+  if (req.headers.authorization) {
+    console.log(req.headers.authorization);
   }
 });
 router.get("/", function (req, res, next) {
