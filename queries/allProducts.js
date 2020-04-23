@@ -2,9 +2,9 @@ const pgClient = require("./client");
 
 const getAllProducts = () => {
   const client = pgClient();
-
+  let data;
   client.connect();
-  return client.query("SELECT * FROM products", (err, res) => {
+  client.query("SELECT * FROM products", (err, res) => {
     if (err) console.log(err);
 
     //console.log(dbRes);
@@ -13,10 +13,10 @@ const getAllProducts = () => {
     //   data: dbRes.rows,
     // });
     console.log(res.rows);
+    data = res.rows;
     client.end();
-
-    return res.rows;
   });
+  return data;
 };
 
 module.exports = getAllProducts;
