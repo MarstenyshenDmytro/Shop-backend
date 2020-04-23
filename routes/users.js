@@ -12,7 +12,7 @@ router.use(function (req, res, next) {
 });
 router.get("/", function (req, res, next) {
   const getAllProducts = require("../queries/allProducts");
-  console.log(getAllProducts());
+  console.log("USERS FILE", getAllProducts());
   res.json({
     data: getAllProducts(),
   });

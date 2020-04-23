@@ -12,7 +12,7 @@ const getAllProducts = () => {
     // res.json({
     //   data: dbRes.rows,
     // });
-    console.log(res.rows);
+    console.log("ALL PRODUCTS FILE", res.rows);
     data = res.rows;
     client.end();
   });
