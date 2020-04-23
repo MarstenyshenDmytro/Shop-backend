@@ -4,7 +4,7 @@ const getAllProducts = () => {
   const client = pgClient();
 
   client.connect();
-  client.query("SELECT * FROM products", (err, res) => {
+  return client.query("SELECT * FROM products", (err, res) => {
     if (err) console.log(err);
 
     //console.log(dbRes);
