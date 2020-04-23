@@ -9,7 +9,8 @@ router.use(function (req, res, next) {
   if (req.header) console.log(req.header);
   if (req.header) console.log(req.header("url"));
   if (req.host) console.log(req.host);
-  if (req.originalUrl) console.log(req.originalUrl);
+  if (req.headers.originalUrl) console.log(req.headers.originalUrl);
+  if (req.headers.origin) console.log(req.headers.origin);
   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
   res.header(
     "Access-Control-Allow-Headers",
