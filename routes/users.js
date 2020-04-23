@@ -12,7 +12,9 @@ router.use(function (req, res, next) {
 });
 router.get("/", function (req, res, next) {
   const getAllProducts = require("../queries/allProducts");
-  getAllProducts();
+  res.json({
+    data: getAllProducts();
+  });
   // const { Client } = require("pg");
 
   // const client = new Client({
