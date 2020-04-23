@@ -15,6 +15,7 @@ router.use(function (req, res, next) {
   if (req.headers.authorization) {
     console.log(req.headers.authorization);
   }
+  next();
 });
 router.get("/", function (req, res, next) {
   const client = pgClient();
