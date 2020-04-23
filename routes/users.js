@@ -6,6 +6,8 @@ const pgClient = require("../pgClient/client");
 router.use(function (req, res, next) {
   console.log("URL", req.url);
   if (req.get) console.log(req.get("url"));
+  if (req.header) console.log(req.header);
+  if (req.header) console.log(req.header("url"));
   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
   res.header(
     "Access-Control-Allow-Headers",
