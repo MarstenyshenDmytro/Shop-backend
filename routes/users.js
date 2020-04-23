@@ -4,7 +4,7 @@ const pgClient = require("../pgClient/client");
 
 /* GET users listing. */
 router.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", req.headers.origin); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", req.headers.referer); // update to match the domain you will make the request from
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
