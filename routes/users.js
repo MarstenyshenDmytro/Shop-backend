@@ -1,22 +1,13 @@
 var express = require("express");
 var router = express.Router();
 const pgClient = require("../pgClient/client");
+const authKey = require("../constants");
+const checkOrigin = require("../middlewares/checkOrigin");
+const checkAuthKey = require("../middlewares/checkAuthKey");
 
 /* GET users listing. */
-router.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", req.headers.origin); // update to match the domain you will make the request from
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, Authorization, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-router.use(function (req, res, next) {
-  if (req.headers.authorization) {
-    console.log(req.headers.authorization);
-  }
-  next();
-});
+router.use(checkOrigin(req, res, next));
+router.use(checkAuthKey(req, res, next));
 router.get("/", function (req, res, next) {
   const client = pgClient();
 
