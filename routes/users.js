@@ -7,8 +7,8 @@ router.use(require("../middlewares/checkOrigin"));
 //router.use(require("../middlewares/checkAuthKey"));
 router.get("/", function (req, res, next) {
   const key = req.headers["x-access-token"] || req.headers["authorization"];
-  if (!key) return res.status(401).send("Access denied. No token provided.");
-  if (!checkAuthKey(key)) return res.status(400).send("Invalid token.");
+  if (!key) res.status(401).send("Access denied. No token provided.");
+  if (!checkAuthKey(key)) res.status(400).send("Invalid token.");
 
   const client = pgClient();
   client.connect();
