@@ -6,8 +6,8 @@ const checkOrigin = require("../middlewares/checkOrigin");
 const checkAuthKey = require("../middlewares/checkAuthKey");
 
 /* GET users listing. */
-router.use(checkOrigin(req, res, next));
-router.use(checkAuthKey(req, res, next));
+router.use(checkOrigin());
+router.use(checkAuthKey());
 router.get("/", function (req, res, next) {
   const client = pgClient();
 
