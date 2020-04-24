@@ -6,6 +6,7 @@ const pgClient = require("../pgClient/client");
 router.use(require("../middlewares/checkOrigin"));
 //router.use(require("../middlewares/checkAuthKey"));
 router.get("/", function (req, res, next) {
+  console.log(req.headers);
   const key = req.headers["x-access-token"] || req.headers["authorization"];
   if (!key) {
     return res.send({
