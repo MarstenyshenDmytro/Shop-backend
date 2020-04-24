@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const pgClient = require("../pgClient/client");
+const authKey = require("../constants");
 
 /* GET users listing. */
 router.use(function (req, res, next) {
