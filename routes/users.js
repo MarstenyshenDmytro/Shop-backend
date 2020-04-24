@@ -1,12 +1,10 @@
 var express = require("express");
 var router = express.Router();
 const pgClient = require("../pgClient/client");
-const checkOrigin = require("../middlewares/checkOrigin");
-const checkAuthKey = require("../middlewares/checkAuthKey");
 
 /* GET users listing. */
-router.use(checkOrigin);
-router.use(checkAuthKey);
+router.use(require("../middlewares/checkOrigin"););
+router.use(require("../middlewares/checkAuthKey"););
 router.get("/", function (req, res, next) {
   const client = pgClient();
 
