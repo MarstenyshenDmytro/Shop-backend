@@ -6,19 +6,19 @@ const pgClient = require("../pgClient/client");
 router.use(require("../middlewares/checkOrigin"));
 //router.use(require("../middlewares/checkAuthKey"));
 router.get("/", function (req, res, next) {
-  const key = req.headers["x-access-token"] || req.headers["authorization"];
-  if (!key) {
-    res.send({
-      status: 401,
-      error: "Access denied. No token provided.",
-    });
-  }
-  if (!checkAuthKey(key)) {
-    res.send({
-      status: 400,
-      error: "Invalid token.",
-    });
-  }
+  // const key = req.headers["x-access-token"] || req.headers["authorization"];
+  // if (!key) {
+  //   res.send({
+  //     status: 401,
+  //     error: "Access denied. No token provided.",
+  //   });
+  // }
+  // if (!checkAuthKey(key)) {
+  //   res.send({
+  //     status: 400,
+  //     error: "Invalid token.",
+  //   });
+  // }
 
   const client = pgClient();
   client.connect();
