@@ -1,7 +1,9 @@
-module.exports = async (req, res, next) => {
+const authKey = require("../constants");
+
+module.exports = (req, res, next) => {
   console.log(req.headers.origin);
-  await res.header("Access-Control-Allow-Origin", req.headers.origin); // update to match the domain you will make the request from
-  await res.header(
+  res.header("Access-Control-Allow-Origin", req.headers.origin); // update to match the domain you will make the request from
+  res.header(
     "Access-Control-Allow-Headers",
     "Origin, Authorization, X-Requested-With, Content-Type, Accept"
   );
