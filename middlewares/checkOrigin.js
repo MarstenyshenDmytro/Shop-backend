@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-  console.log(req.headers);
+  console.log(req.headers["authorization"]);
   res.header("Access-Control-Allow-Origin", req.headers.origin); // update to match the domain you will make the request from
   res.header(
     "Access-Control-Allow-Headers",
