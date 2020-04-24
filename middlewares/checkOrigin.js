@@ -1,4 +1,4 @@
-const checkOrigin = (req, res, next) => {
+module.exports = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", req.headers.origin); // update to match the domain you will make the request from
   res.header(
     "Access-Control-Allow-Headers",
@@ -6,5 +6,3 @@ const checkOrigin = (req, res, next) => {
   );
   next();
 };
-
-module.exports = checkOrigin;

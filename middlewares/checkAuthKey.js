@@ -1,6 +1,6 @@
 const authKey = require("../constants");
 
-const checkAuthKey = (req, res, next) => {
+module.exports = (req, res, next) => {
   const { authorization } = req.headers;
   console.log(authorization);
   if (authorization === authKey) {
@@ -9,5 +9,3 @@ const checkAuthKey = (req, res, next) => {
     res.status(401).send("Bad authorization key.");
   }
 };
-
-module.exports = checkAuthKey;
