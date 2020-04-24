@@ -1,8 +1,8 @@
 const authKey = require("../constants");
 
 module.exports = (req, res, next) => {
-  consoloe.log(req.headers.authorization);
-  if (req.headers.authorization === authKey) {
+  const key = req.headers["x-access-token"] || req.headers["authorization"];
+  if (key === authKey) {
     console.log(1);
     next();
   } else {
