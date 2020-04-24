@@ -1,3 +1,5 @@
+const authKey = require("../constants");
+
 const checkAuthKey = (req, res, next) => {
   const { authorization } = req.headers;
   if (authorization === authKey) {
