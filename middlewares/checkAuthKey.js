@@ -4,4 +4,10 @@ const checkAuthKey = (key) => {
   return key === authKey;
 };
 
-module.exports = checkAuthKey;
+module.exports = (req, res, next) => {
+  if (req.headers["authorization"] === authKey) {
+    next();
+  } else {
+    res.status(400).send("Bad key");
+  }
+};
