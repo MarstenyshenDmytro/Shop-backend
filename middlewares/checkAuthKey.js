@@ -1,14 +1,10 @@
 const authKey = require("../constants");
-const jwt = require("jsonwebtoken");
 
-module.exports = (req, res, next) => {
-  const key = req.headers["x-access-token"] || req.headers["authorization"];
-  if (key === authKey) {
-    console.log(1);
-    next();
-  } else {
-    res.send(400, "Bad authorization key.");
-  }
+const checkAuthKey = (key) => {
+    return key === authKey;
+}
+
+module.exports = checkAuthKey;
   //   const key = req.headers["x-access-token"] || req.headers["authorization"];
   //   //if no token found, return response (without going to the next middelware)
   //   if (!key) return res.send(401, "Access denied. No token provided.");
