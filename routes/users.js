@@ -9,9 +9,10 @@ router.get("/", function (req, res, next) {
   const key = req.headers["x-access-token"] || req.headers["authorization"];
   if (!key) {
     res.send({
-    status: 401,
-    error: "Access denied. No token provided.",
-  });
+      status: 401,
+      error: "Access denied. No token provided.",
+    });
+  }
   if (!checkAuthKey(key)) {
     res.send({
       status: 400,
