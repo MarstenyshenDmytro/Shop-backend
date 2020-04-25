@@ -8,7 +8,7 @@ const pgClient = require("../pgClient/client");
 router.get("/", function (req, res, next) {
   const client = pgClient();
   client.connect();
-  client.query("SELECT * FROM products WHERE id=1", (err, dbRes) => {
+  client.query("SELECT * FROM categories", (err, dbRes) => {
     if (err) console.log(err);
 
     res.json({
