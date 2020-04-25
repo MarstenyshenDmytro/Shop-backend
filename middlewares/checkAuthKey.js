@@ -7,7 +7,7 @@ const config = require("../config");
 module.exports = (req, res, next) => {
   console.log("AUTH");
   res.status(401);
-  res.Header("WWW-Authenticate", `Basic realm="Access to the standing site"`);
+  res.header("WWW-Authenticate", `Basic realm="Access to the standing site"`);
   res.send("Unauthorize");
   console.log(req.headers["authorization"]);
   console.log(req.headers.origin);
