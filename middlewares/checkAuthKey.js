@@ -2,7 +2,9 @@ const authKey = require("../constants");
 let jwt = require("jsonwebtoken");
 const config = require("../config");
 
-let checkToken = (req, res, next) => {
+//let checkToken =
+
+module.exports = (req, res, next) => {
   let token = req.headers["x-access-token"] || req.headers["authorization"]; // Express headers are auto converted to lowercase
   if (token.startsWith("Bearer ")) {
     // Remove Bearer from string
@@ -27,8 +29,4 @@ let checkToken = (req, res, next) => {
       message: "Auth token is not supplied",
     });
   }
-};
-
-module.exports = {
-  checkToken: checkToken,
 };
