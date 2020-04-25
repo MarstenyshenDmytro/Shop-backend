@@ -1,6 +1,7 @@
 const authKey = require("../constants");
 
 module.exports = (req, res, next) => {
+  console.log("Origin");
   console.log(req.headers["authorization"]);
   console.log(req.headers.origin);
   // if (req.headers["authorization"] === authKey) {

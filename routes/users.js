@@ -6,6 +6,7 @@ const pgClient = require("../pgClient/client");
 //router.use(require("../middlewares/checkAuthKey"));
 //router.use(require("../middlewares/checkOrigin"));
 router.get("/", function (req, res, next) {
+  console.log("USERS");
   console.log(req.headers["authorization"]);
   console.log(req.headers.origin);
   const client = pgClient();

@@ -5,6 +5,7 @@ const config = require("../config");
 //let checkToken =
 
 module.exports = (req, res, next) => {
+  console.log("AUTH");
   console.log(req.headers["authorization"]);
   console.log(req.headers.origin);
   next();
