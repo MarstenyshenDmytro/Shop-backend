@@ -24,7 +24,7 @@ app.use(
   "/users",
   require("./middlewares/checkAuthKey"),
   require("./middlewares/checkOrigin"),
-  require("./middlewares/checkAuthKey"),
+  //require("./middlewares/checkAuthKey"),
   usersRouter
 );
 
