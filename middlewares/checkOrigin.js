@@ -6,14 +6,13 @@ module.exports = (req, res, next) => {
   console.log(req.headers.origin);
   // if (req.headers["authorization"] === authKey) {
   console.log(1);
-  res.status(401);
+
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, Authorization, X-Requested-With, Content-Type, Accept"
   );
   res.header("WWW-Authenticate", `Basic realm="Access to the standing site"`);
-  res.send("Unauthorize");
   //}
   next();
 };
