@@ -22,8 +22,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use(
   "/users",
-  //require("./middlewares/checkAuthKey"),
+  require("./middlewares/checkAuthKey"),
   require("./middlewares/checkOrigin"),
+  require("./middlewares/checkAuthKey"),
   usersRouter
 );
 
