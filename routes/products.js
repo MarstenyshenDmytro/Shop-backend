@@ -28,21 +28,24 @@ function filterQueryString(str) {
 }
 
 router.get("/", function (req, res, next) {
+  const { query } = req;
+  const { filters, offset, limit } = query;
   const clientProducts = pgClient();
   const clientCount = pgClient();
-  const filter = filterQueryString(req.query.filters);
+  const filter = filterQueryString(filters);
+  const offset = parseInt(offset) || 0;
+  const limit = parseInt(limit) || 6;
 
   clientProducts.connect();
   clientCount.connect();
   clientProducts.query(
-    `SELECT * FROM products ${filter} ORDER BY id DESC`,
+    `SELECT * FROM products ${filter} ORDER BY id DESC LIMIT ${offset}, ${limit}`,
     (err, dbRes) => {
       if (err) console.log(err);
       clientCount.query(
         `SELECT COUNT(*) AS count FROM products`,
         (err, dbResCount) => {
           if (err) console.log(err);
-          console.log(dbResCount);
           res.json({
             data: dbRes.rows,
             count: dbResCount.rows,
