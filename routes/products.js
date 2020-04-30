@@ -6,6 +6,8 @@ const pgClient = require("../pgClient/client");
 //router.use(require("../middlewares/checkAuthKey"));
 //router.use(require("../middlewares/checkOrigin"));
 router.get("/", function (req, res, next) {
+  console.log(req.params);
+
   const client = pgClient();
   client.connect();
   client.query("SELECT * FROM products ORDER BY id DESC", (err, dbRes) => {
