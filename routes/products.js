@@ -2,9 +2,6 @@ var express = require("express");
 var router = express.Router();
 const pgClient = require("../pgClient/client");
 
-/* GET users listing. */
-//router.use(require("../middlewares/checkAuthKey"));
-//router.use(require("../middlewares/checkOrigin"));
 function filterQueryString(obj) {
   let filterString = "";
   Object.entries(obj).forEach(([key, value]) => {
