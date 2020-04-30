@@ -35,6 +35,7 @@ router.get("/", function (req, res, next) {
   const f = filterQueryString(filters);
   const o = parseInt(offset) || 0;
   const l = parseInt(limit) || 6;
+  console.log(offset, limit);
 
   clientProducts.connect();
   clientCount.connect();
