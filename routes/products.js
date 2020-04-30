@@ -2,20 +2,7 @@ var express = require("express");
 var router = express.Router();
 const pgClient = require("../pgClient/client");
 
-function filterQueryString(obj) {
-  let filterString = "";
-  Object.entries(obj).forEach(([key, value]) => {
-    if (value !== "none") {
-      filterString += `${key}='${value}' and `;
-    }
-  });
-  if (filterString.length !== 0) {
-    return `WHERE ${filterString.slice(0, -5)}`;
-  }
-  return filterString;
-}
-
-function filterQueryStringT(str) {
+function filterQueryString(str) {
   let obj = {};
   let filterString = "";
   let arr = str.slice(1, -1).split(",");
@@ -27,14 +14,12 @@ function filterQueryStringT(str) {
     value = item.split(":")[1].slice(1, -1);
     obj[key] = value;
   });
-  console.log(obj);
 
   Object.entries(obj).forEach(([key, value]) => {
     if (value !== "none") {
       filterString += `${key}='${value}' and `;
     }
   });
-  console.log(filterString);
   if (filterString.length !== 0) {
     return `WHERE ${filterString.slice(0, -5)}`;
   }
@@ -43,18 +28,23 @@ function filterQueryStringT(str) {
 
 router.get("/", function (req, res, next) {
   const client = pgClient();
-  const filter = filterQueryStringT(req.query.filters);
+  const filter = filterQueryString(req.query.filters);
 
   client.connect();
   client.query(
     `SELECT * FROM products ${filter} ORDER BY id DESC`,
     (err, dbRes) => {
       if (err) console.log(err);
-
-      res.json({
-        data: dbRes.rows,
-      });
-
+      client.query(
+        `SELECT COUNT(*) AS count FROM products`,
+        (err, dbResCount) => {
+          if (err) console.log(err);
+          res.json({
+            data: dbRes.rows,
+            count: dbResCount.rows,
+          });
+        }
+      );
       client.end();
     }
   );
