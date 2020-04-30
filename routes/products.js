@@ -27,6 +27,7 @@ function filterQueryStringT(str) {
     value = item.split(":")[1].slice(1, -1);
     obj[key] = value;
   });
+  console.log(obj);
 
   Object.entries(obj).forEach(([key, value]) => {
     if (value !== "none") {
