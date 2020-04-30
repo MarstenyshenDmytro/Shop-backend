@@ -6,7 +6,7 @@ const pgClient = require("../pgClient/client");
 //router.use(require("../middlewares/checkAuthKey"));
 //router.use(require("../middlewares/checkOrigin"));
 function filterQueryString(obj) {
-  let filterString;
+  let filterString = "";
   Object.entries(obj).forEach(([key, value]) => {
     if (value !== "none") {
       filterString += `${key}=${value} and `;
@@ -15,15 +15,10 @@ function filterQueryString(obj) {
   if (filterString.length !== 0) {
     return `WHERE ${filterString.slice(0, -5)}`;
   }
-  return "";
+  return filterString;
 }
 
 router.get("/", function (req, res, next) {
-  console.log(req.params);
-  console.log(req.query);
-  console.log(req.query.brand);
-  console.log(typeof req.query);
-
   const client = pgClient();
   client.connect();
   client.query(
