@@ -8,6 +8,8 @@ const pgClient = require("../pgClient/client");
 router.get("/", function (req, res, next) {
   console.log(req.params);
   console.log(req.query);
+  console.log(req.query.filters);
+  console.log(req.query.filters.brands);
   const client = pgClient();
   client.connect();
   client.query("SELECT * FROM products ORDER BY id DESC", (err, dbRes) => {
