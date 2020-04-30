@@ -8,7 +8,7 @@ const pgClient = require("../pgClient/client");
 router.get("/", function (req, res, next) {
   const client = pgClient();
   client.connect();
-  client.query("SELECT * FROM products", (err, dbRes) => {
+  client.query("SELECT * FROM products ORDER BY id DESC", (err, dbRes) => {
     if (err) console.log(err);
 
     res.json({
