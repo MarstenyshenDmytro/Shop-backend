@@ -45,7 +45,7 @@ router.get("/", function (req, res, next) {
           console.log(dbResCount);
           res.json({
             data: dbRes.rows,
-            count: dbResCount.rowa,
+            count: dbResCount.rows,
           });
           clientCount.end();
         }
