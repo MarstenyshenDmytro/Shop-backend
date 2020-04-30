@@ -9,7 +9,7 @@ function filterQueryString(obj) {
   let filterString = "";
   Object.entries(obj).forEach(([key, value]) => {
     if (value !== "none") {
-      filterString += `${key}=${value} and `;
+      filterString += `${key}='${value}' and `;
     }
   });
   if (filterString.length !== 0) {
@@ -20,9 +20,9 @@ function filterQueryString(obj) {
 
 router.get("/", function (req, res, next) {
   const client = pgClient();
-  client.connect();
   const filter = filterQueryString(req.query);
-  console.log(filter);
+
+  client.connect();
   client.query(
     `SELECT * FROM products ${filter} ORDER BY id DESC`,
     (err, dbRes) => {
