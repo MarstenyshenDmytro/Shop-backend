@@ -33,6 +33,7 @@ function filterQueryStringT(str) {
       filterString += `${key}='${value}' and `;
     }
   });
+  console.log(filterString);
   if (filterString.length !== 0) {
     return `WHERE ${filterString.slice(0, -5)}`;
   }
