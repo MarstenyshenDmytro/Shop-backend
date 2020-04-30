@@ -3,6 +3,7 @@ var router = express.Router();
 const pgClient = require("../pgClient/client");
 
 function filterQueryString(str) {
+  if (str === undefined) return "";
   let obj = {};
   let filterString = "";
   let arr = str.slice(1, -1).split(",");
@@ -39,6 +40,7 @@ router.get("/", function (req, res, next) {
         `SELECT COUNT(*) AS count FROM products`,
         (err, dbResCount) => {
           if (err) console.log(err);
+          console.log(dbResCount);
           res.json({
             data: dbRes.rows,
             count: dbResCount,
