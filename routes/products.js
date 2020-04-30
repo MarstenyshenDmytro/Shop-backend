@@ -18,7 +18,7 @@ function filterQueryString(obj) {
 function filterQueryStringT(str) {
   let obj = {};
   let filterString = "";
-  let arr = str.split(",");
+  let arr = str.slice(1, -1).split(",");
 
   arr.forEach((item) => {
     let key = "";
