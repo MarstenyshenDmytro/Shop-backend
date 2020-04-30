@@ -28,29 +28,29 @@ function filterQueryString(str) {
 }
 
 router.get("/", function (req, res, next) {
-  const client = pgClient();
-  const clientA = pgClient();
+  const clientProducts = pgClient();
+  const clientCount = pgClient();
   const filter = filterQueryString(req.query.filters);
 
-  client.connect();
-  clientA.connect();
-  client.query(
+  clientProducts.connect();
+  clientCount.connect();
+  clientProducts.query(
     `SELECT * FROM products ${filter} ORDER BY id DESC`,
     (err, dbRes) => {
       if (err) console.log(err);
-      clientA.query(
+      clientCount.query(
         `SELECT COUNT(*) AS count FROM products`,
         (err, dbResCount) => {
           if (err) console.log(err);
           console.log(dbResCount);
           res.json({
             data: dbRes.rows,
-            count: dbResCount,
+            count: dbResCount.rowa,
           });
-          clientA.end();
+          clientCount.end();
         }
       );
-      client.end();
+      clientProducts.end();
     }
   );
 });
