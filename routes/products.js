@@ -43,7 +43,7 @@ router.get("/", function (req, res, next) {
     (err, dbRes) => {
       if (err) console.log(err);
       clientCount.query(
-        `SELECT COUNT(*) AS count FROM products`,
+        `SELECT COUNT(*) AS count FROM products ${f}`,
         (err, dbResCount) => {
           if (err) console.log(err);
           res.json({
