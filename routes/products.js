@@ -41,7 +41,7 @@ router.get("/", function (req, res, next) {
           if (err) console.log(err);
           res.json({
             data: dbRes.rows,
-            count: dbResCount.rows,
+            count: dbResCount.count,
           });
         }
       );
