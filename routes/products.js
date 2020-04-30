@@ -21,8 +21,9 @@ function filterQueryString(obj) {
 router.get("/", function (req, res, next) {
   const client = pgClient();
   client.connect();
+  const filter = filterQueryString(req.query);
   client.query(
-    `SELECT * FROM products ${filterQueryString(req.query)} ORDER BY id DESC`,
+    `SELECT * FROM products ${filter} ORDER BY id DESC`,
     (err, dbRes) => {
       if (err) console.log(err);
 
