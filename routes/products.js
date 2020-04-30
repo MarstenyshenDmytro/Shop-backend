@@ -15,9 +15,33 @@ function filterQueryString(obj) {
   return filterString;
 }
 
+function filterQueryStringT(str) {
+  let obj = {};
+  let filterString = "";
+  let arr = str.split(",");
+
+  arr.forEach((item) => {
+    let key = "";
+    let value = "";
+    key = item.split(":")[0].slice(1, -1);
+    value = item.split(":")[1].slice(1, -1);
+    obj[key] = value;
+  });
+
+  Object.entries(obj).forEach(([key, value]) => {
+    if (value !== "none") {
+      filterString += `${key}='${value}' and `;
+    }
+  });
+  if (filterString.length !== 0) {
+    return `WHERE ${filterString.slice(0, -5)}`;
+  }
+  return filterString;
+}
+
 router.get("/", function (req, res, next) {
   const client = pgClient();
-  const filter = filterQueryString(req.query);
+  const filter = filterQueryStringT(req.query.filters);
 
   client.connect();
   client.query(
