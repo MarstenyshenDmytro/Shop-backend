@@ -29,14 +29,16 @@ function filterQueryString(str) {
 
 router.get("/", function (req, res, next) {
   const client = pgClient();
+  const clientA = pgClient();
   const filter = filterQueryString(req.query.filters);
 
   client.connect();
+  clientA.connect();
   client.query(
     `SELECT * FROM products ${filter} ORDER BY id DESC`,
     (err, dbRes) => {
       if (err) console.log(err);
-      client.query(
+      clientA.query(
         `SELECT COUNT(*) AS count FROM products`,
         (err, dbResCount) => {
           if (err) console.log(err);
@@ -45,6 +47,7 @@ router.get("/", function (req, res, next) {
             data: dbRes.rows,
             count: dbResCount,
           });
+          clientA.end();
         }
       );
       client.end();
