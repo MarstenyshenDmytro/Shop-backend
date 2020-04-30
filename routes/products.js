@@ -35,12 +35,11 @@ router.get("/", function (req, res, next) {
   const f = filterQueryString(filters);
   const o = parseInt(offset) || 0;
   const l = parseInt(limit) || 6;
-  console.log(offset, limit);
 
   clientProducts.connect();
   clientCount.connect();
   clientProducts.query(
-    `SELECT * FROM products ${f} ORDER BY id DESC LIMIT ${o}, ${l}`,
+    `SELECT * FROM products ${f} ORDER BY id DESC LIMIT ${l} OFFSET ${o}`,
     (err, dbRes) => {
       if (err) console.log(err);
       clientCount.query(
