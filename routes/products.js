@@ -32,14 +32,14 @@ router.get("/", function (req, res, next) {
   const { filters, offset, limit } = query;
   const clientProducts = pgClient();
   const clientCount = pgClient();
-  const filter = filterQueryString(filters);
-  const offset = parseInt(offset) || 0;
-  const limit = parseInt(limit) || 6;
+  const f = filterQueryString(filters);
+  const o = parseInt(offset) || 0;
+  const l = parseInt(limit) || 6;
 
   clientProducts.connect();
   clientCount.connect();
   clientProducts.query(
-    `SELECT * FROM products ${filter} ORDER BY id DESC LIMIT ${offset}, ${limit}`,
+    `SELECT * FROM products ${f} ORDER BY id DESC LIMIT ${o}, ${l}`,
     (err, dbRes) => {
       if (err) console.log(err);
       clientCount.query(
