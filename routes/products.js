@@ -22,6 +22,7 @@ router.get("/", function (req, res, next) {
   const client = pgClient();
   client.connect();
   const filter = filterQueryString(req.query);
+  console.log(filter);
   client.query(
     `SELECT * FROM products ${filter} ORDER BY id DESC`,
     (err, dbRes) => {
