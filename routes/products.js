@@ -59,9 +59,8 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/:productId", function (req, res, next) {
-  console.log(req.url);
   const { url } = req;
-  const id = url.slice(1, 2);
+  const id = url.slice(1, url.length);
 
   const client = pgClient();
   client.connect();
