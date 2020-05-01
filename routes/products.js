@@ -59,9 +59,10 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/:productId", function (req, res, next) {
+  console.log(req);
   const client = pgClient();
   client.connect();
-  client.query("SELECT name FROM products WHERE id=1", (err, dbRes) => {
+  client.query("SELECT * FROM products WHERE id=1", (err, dbRes) => {
     if (err) console.log(err);
 
     res.json({
