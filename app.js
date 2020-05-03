@@ -9,6 +9,7 @@ const productsRouter = require("./routes/products");
 const categoriesRouter = require("./routes/categories");
 const gendersRouter = require("./routes/genders");
 const brandsRouter = require("./routes/brands");
+const basketRouter = reqiue("./roites/basket");
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use("/products", origin, productsRouter);
 app.use("/categories", origin, categoriesRouter);
 app.use("/genders", origin, gendersRouter);
 app.use("/brands", origin, brandsRouter);
+app.use("/basket", origin, basketRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
