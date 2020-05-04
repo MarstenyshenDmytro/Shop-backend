@@ -6,6 +6,9 @@ const pgClient = require("../pgClient/client");
 //router.use(require("../middlewares/checkAuthKey"));
 //router.use(require("../middlewares/checkOrigin"));
 function filterUqeryString(query) {
+  console.log(query);
+  console.log(typeof query);
+
   let arr = query.split(",");
   let str = "";
   arr.array.forEach((item) => {
