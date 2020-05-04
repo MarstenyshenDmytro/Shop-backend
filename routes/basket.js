@@ -11,7 +11,7 @@ function filterUqeryString(query) {
   let arr = query.split(",");
   let str = "";
   arr.forEach((item) => {
-    str += `id=${item} and `;
+    str += `id=${parseInt(item, 10)} and `;
   });
   return `WHERE ${str.slice(0, -5)}`;
 }
