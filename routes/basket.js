@@ -5,8 +5,8 @@ const pgClient = require("../pgClient/client");
 /* GET users listing. */
 //router.use(require("../middlewares/checkAuthKey"));
 //router.use(require("../middlewares/checkOrigin"));
-function filterUqeryString(str) {
-  let arr = str.split(",");
+function filterUqeryString(query) {
+  let arr = query.split(",");
   let str = "";
   arr.array.forEach((item) => {
     str += `id=${item} and `;
