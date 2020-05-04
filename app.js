@@ -9,7 +9,7 @@ const productsRouter = require("./routes/products");
 const categoriesRouter = require("./routes/categories");
 const gendersRouter = require("./routes/genders");
 const brandsRouter = require("./routes/brands");
-const basketRouter = require("./roites/basket");
+const basketRouter = require("./routes/basket");
 
 var app = express();
 
