@@ -11,9 +11,9 @@ function filterUqeryString(query) {
   let arr = query.split(",");
   let str = "";
   arr.forEach((item) => {
-    str += `id=${parseInt(item, 10)} and `;
+    str += `${(item, 10)} and `;
   });
-  return `WHERE ${str.slice(0, -5)}`;
+  return `WHERE id=${str.slice(0, -5)}`;
 }
 
 router.get("/", function (req, res, next) {
