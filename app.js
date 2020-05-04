@@ -10,7 +10,7 @@ const categoriesRouter = require("./routes/categories");
 const gendersRouter = require("./routes/genders");
 const brandsRouter = require("./routes/brands");
 const basketRouter = require("./routes/basket");
-
+const likesRouter = require("./routes/basket");
 var app = express();
 
 const origin = require("./middlewares/checkOrigin");
@@ -30,6 +30,7 @@ app.use("/categories", origin, categoriesRouter);
 app.use("/genders", origin, gendersRouter);
 app.use("/brands", origin, brandsRouter);
 app.use("/basket", origin, basketRouter);
+app.use("/likes", origin, likesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
