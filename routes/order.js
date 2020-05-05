@@ -19,7 +19,7 @@ function emailTextOrder(arr) {
 router.post("/", function (req, res, next) {
   const { body } = req;
   const { userData, orderedProducts } = body;
-  const { firstName, email, phone } = userData;
+  const { firstName, email, phoneNumber } = userData;
   const order = emailTextOrder(orderedProducts);
 
   const send = require("gmail-send")({
@@ -31,10 +31,14 @@ router.post("/", function (req, res, next) {
 
   send(
     {
-      text: `Client name: ${firstName}, Clien phone: ${phone}, Order: ${order}`,
+      text: `Client name: ${firstName}, Clien phone: ${phoneNumber}, Order: ${order}`,
     },
     (error, result, fullResult) => {
-      if (error) console.error(error);
+      if (error) {
+        res.json({
+          msg: "Error",
+        });
+      }
       if (result) {
         res.json({
           msg: "SUCCESS",
