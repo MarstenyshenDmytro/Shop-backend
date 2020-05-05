@@ -6,6 +6,9 @@ var router = express.Router();
 //router.use(require("../middlewares/checkOrigin"));
 router.post("/", function (req, res, next) {
   console.log(req);
+  res.json({
+    data: "oder",
+  });
 });
 
 module.exports = router;
