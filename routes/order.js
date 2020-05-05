@@ -5,45 +5,44 @@ const pgClient = require("../pgClient/client");
 /* GET users listing. */
 //router.use(require("../middlewares/checkAuthKey"));
 //router.use(require("../middlewares/checkOrigin"));
-function getProductId(arr) {
+
+function emailTextOrder(arr) {
   let str = "";
-  arr.forEach((element) => {
-    str += `${element.id},`;
+  arr.forEach((element, i) => {
+    str += `${i + 1}) product id: ${element.id}, product size ${
+      element.value
+    }; `;
   });
-  return str.slice(0, -1);
+  return str;
 }
 
 router.post("/", function (req, res, next) {
   const { body } = req;
   const { userData, orderedProducts } = body;
   const { firstName, email, phone } = userData;
-  const productsId = getProductId(orderedProducts);
-  const productsInfo = [];
-
-  const client = pgClient();
-  client.connect();
-  client.query(
-    `SELECT id,name FROM products WHERE id IN(${productsId})`,
-    (err, dbRes) => {
-      if (err) console.log(err);
-      console.log("DBRESPONS", dbRes.rows);
-      //   orderedProducts.forEach((element,i) => {
-      //     productsInfo.push({name:  dbRes.rows[i].name, size= orderedProducts. })
-      //   });
-
-      client.end();
-    }
-  );
+  const order = emailTextOrder(orderedProducts);
 
   const send = require("gmail-send")({
     user: "martsenyshen@gmail.com",
     pass: "ForApi05052020",
-    to: "user@gmail.com",
+    to: email,
     subject: "test subject",
   });
-  res.json({
-    data: "oder",
-  });
+
+  send(
+    {
+      text: `Client name: ${firstName}, Clien phone: ${phone}, Order: ${order}`,
+    },
+    (error, result, fullResult) => {
+      if (error) console.error(error);
+      if (result) {
+        res.json({
+          msg: "SUCCESS",
+        });
+        console.log(result);
+      }
+    }
+  );
 });
 
 module.exports = router;
